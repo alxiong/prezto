@@ -15,12 +15,7 @@ source "$HOME/.profile"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-# export ZSH=/home/alex/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Spaceship Theme customization
 ZSH_THEME="spaceship"
 SPACESHIP_PROMPT_ORDER=(
     user
@@ -44,12 +39,6 @@ SPACESHIP_HOST_SHOW=always
 SPACESHIP_USER_SHOW=always
 SPACESHIP_USER_PREFIX="╭─ "
 SPACESHIP_CHAR_SYMBOL="╰─○ "
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -89,15 +78,6 @@ HIST_STAMPS="mm/dd/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git zsh-nvm docker django rake react-native vagrant
-)
-
-# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -128,12 +108,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-setopt globdots
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # importing .bashrc setting
 # If not running interactively, don't do anything
@@ -141,17 +117,6 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias today='date +"%A, %B %-d, %Y"'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # virtualenvwrapper setup
 export PATH=$PATH:/usr/local/go/bin

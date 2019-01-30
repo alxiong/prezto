@@ -35,23 +35,27 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'fasd' \
   'contrib-prompt' \
   'git' \
   'syntax-highlighting' \
   'prompt' \
   'tmux' \
   'docker' \
+  'autosuggestions' \
   'gpg' \
   'node' \
   'python' \
   'ssh' \
   'history-substring-search' \
+  'archive' \
+  'rsync' \
 #
 # Autosuggestions
 #
 
 # Set the query found color.
-zstyle ':prezto:module:autosuggestions:color' found ''
+zstyle ':prezto:module:autosuggestions' color 'yes' 
 
 #
 # Completions
@@ -91,12 +95,12 @@ zstyle ':prezto:module:gnu-utility' prefix 'g'
 #
 # History Substring Search
 #
-
+zstyle ':prezto:module:history-substring-search' color 'yes'
 # Set the query found color.
-zstyle ':prezto:module:history-substring-search:color' found ''
+# zstyle ':prezto:module:history-substring-search:color' found ''
 
 # Set the query not found color.
-zstyle ':prezto:module:history-substring-search:color' not-found ''
+# zstyle ':prezto:module:history-substring-search:color' not-found ''
 
 # Set the search globbing flags.
 zstyle ':prezto:module:history-substring-search' globbing-flags ''
@@ -240,44 +244,4 @@ zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 # zstyle ':prezto:module:utility' safe-ops 'yes'
 #
 # User configuration
-
-export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF+8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
- else
-  export EDITOR='mvim'
-fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-setopt globdots
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Golang configuration
-export PATH=$PATH:/usr/local/go/bin
-
-# IPFS configuration
-export IPFS_PATH=/path/to/ipfsrepo
 
