@@ -21,8 +21,29 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="spaceship"
-
+ZSH_THEME="spaceship"
+SPACESHIP_PROMPT_ORDER=(
+    user
+    host
+    dir
+    git
+    docker
+    aws
+    venv
+    conda
+    kubecontext
+    exec_time
+    line_sep
+    jobs
+    exit_code
+    char
+)
+spaceship_prompt_opened=true
+SPACESHIP_PROMPT_PREFIXES_SHOW=true
+SPACESHIP_HOST_SHOW=always
+SPACESHIP_USER_SHOW=always
+SPACESHIP_USER_PREFIX="╭─ "
+SPACESHIP_CHAR_SYMBOL="╰─○ "
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -112,7 +133,6 @@ alias zshconfig="mate ~/.zshrc"
 
 setopt globdots
 
-source /home/alex/Desktop/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # importing .bashrc setting
@@ -172,9 +192,6 @@ export PATH=~/.local/bin:$PATH
 # Install Ruby Gems to ~/gems
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
-
-# adding golang path
-export PATH=$PATH:/usr/local/go/bin
 
 export PATH=~/.npm-global/bin:$PATH
 ###-begin-npm-completion-###
@@ -237,9 +254,6 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-
-# Golang configuration
-export PATH=$PATH:/usr/local/go/bin
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 source "$HOME/.zpreztorc"
