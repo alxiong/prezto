@@ -36,9 +36,9 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'fasd' \
-  'contrib-prompt' \
   'git' \
   'syntax-highlighting' \
+  'contrib-prompt' \
   'prompt' \
   'tmux' \
   'docker' \
