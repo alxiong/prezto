@@ -11,3 +11,36 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export GOPATH=~/go
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH=~/.gem/ruby/2.6.0/bin:/usr/local/opt/ruby/bin:~/dev/ibm/fabric-samples/bin:~/dev/cmu15-122/cc0/bin:~/go/bin:/Users/alex/.nvm/versions/node/v8.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:~/.emacs.d/bin:~/.cargo/bin:/usr/local/go/bin:/Applications/Wireshark.app/Contents/MacOS
+
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+
+##
+# Your previous /Users/alex/.profile file was backed up as /Users/alex/.profile.macports-saved_2019-07-08_at_20:57:57
+##
+
+# MacPorts Installer addition on 2019-07-08_at_20:57:57: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+export C0PATH="$HOME/dev/cmu15-122/cc0/bin/"
+export LC_ALL=en_US.UTF-8
+
+# Editors
+export EDITOR='vim'
+export VISUAL='vim'
+export PAGER='less'
+
+# Ruby
+# export LDFLAGS="-L/usr/local/opt/ruby/lib"
+# export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
