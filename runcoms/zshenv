@@ -17,7 +17,7 @@ export GOPATH=~/go
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH=~/.gem/ruby/2.6.0/bin:/usr/local/opt/ruby/bin:~/dev/ibm/fabric-samples/bin:~/dev/cmu15-122/cc0/bin:~/go/bin:/Users/alex/.nvm/versions/node/v8.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:~/.emacs.d/bin:~/.cargo/bin:/usr/local/go/bin:/Applications/Wireshark.app/Contents/MacOS
+export PATH=/usr/local/smlnj/bin:~/.gem/ruby/2.6.0/bin:/usr/local/opt/ruby/bin:~/dev/ibm/fabric-samples/bin:~/dev/cmu15-122/cc0/bin:~/go/bin:/Users/alex/.nvm/versions/node/v8.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:~/.emacs.d/bin:~/.cargo/bin:/usr/local/go/bin:/Applications/Wireshark.app/Contents/MacOS
 
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"

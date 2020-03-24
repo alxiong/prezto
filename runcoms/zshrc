@@ -24,7 +24,6 @@ SPACESHIP_PROMPT_ORDER=(
     aws
     venv
     conda
-    kubecontext
     exec_time
     line_sep
     jobs
@@ -95,7 +94,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
-#
+alias emacs="emacs -nw"
 
 
 # importing .bashrc setting
@@ -173,3 +172,10 @@ fi
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 source "$HOME/.zpreztorc"
 
+# Kubectl completion
+source <(kubectl completion zsh)
+# Openshift CLI completion
+source <(oc completion zsh)
+
+# opam configuration
+test -r /Users/alex/.opam/opam-init/init.zsh && . /Users/alex/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
