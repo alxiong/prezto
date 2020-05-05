@@ -44,3 +44,6 @@ export PAGER='less'
 # export LDFLAGS="-L/usr/local/opt/ruby/lib"
 # export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+
+# PDF tool
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.3/lib/pkgconfig"
