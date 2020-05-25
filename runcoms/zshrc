@@ -1,17 +1,18 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
+# Check for an interactive session
+[ -z "$PS1" ] && return
+
+## NOTE: env var already loaded in .zshenv
+[[ -f ~/.pathrc ]] && . ~/.pathrc
+[[ -f ~/.aliasrc ]] && . ~/.aliasrc
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# Customize to your needs...
-source "$HOME/.profile"
 
 # Spaceship Theme customization
 ZSH_THEME="spaceship"
@@ -78,45 +79,10 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # User configuration
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF+8
+## CLI completion
+command -v npm >/dev/null 2>&1 && source <(npm completion) # npm
+command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh) # kubernetes
+command -v oc >/dev/null 2>&1 && source <(oc completion zsh) # Openshift
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-# Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias pip=pip3
-
-# importing .bashrc setting
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# amazon aws alexa skill setting
-export ASK_DEFAULT_PROFILE="alex"
-export ASK_DEFAULT_DEVICE_LOCALE="en-US"
-
-# npm completion
-source <(npm completion)
-
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-source "$HOME/.zpreztorc"
-
-# Kubectl completion
-source <(kubectl completion zsh)
-# Openshift CLI completion
-source <(oc completion zsh)
-
-# opam configuration
-test -r /Users/alex/.opam/opam-init/init.zsh && . /Users/alex/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+## rbenv init
+eval "$(rbenv init -)"
