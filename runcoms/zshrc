@@ -80,9 +80,13 @@ HIST_STAMPS="mm/dd/yyyy"
 # User configuration
 
 ## CLI completion
-command -v npm >/dev/null 2>&1 && source <(npm completion) # npm
-command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh) # kubernetes
-command -v oc >/dev/null 2>&1 && source <(oc completion zsh) # Openshift
+for cmd in npm kubectl oc tkn; do
+	if command -v "$cmd" >/dev/null 2>&1; then
+		source <("$cmd" completion zsh)
+	fi
+done
 
 ## rbenv init
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+	eval "$(rbenv init -)"
+fi
