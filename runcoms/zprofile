@@ -3,3 +3,4 @@
 #
 
 # use .zlogin instead
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -27,27 +27,25 @@ zstyle ':prezto:load' zmodule 'attr' 'stat'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
   'archive' \
+  'utility' \
   'completion' \
-  'contrib-prompt' \
   'directory' \
   'docker' \
-  'editor' \
-  'environment' \
   'fasd' \
   'gpg' \
   'history' \
   'history-substring-search' \
   'node' \
-  'prompt' \
   'python' \
   'rsync' \
   'spectrum' \
   'syntax-highlighting' \
   'ssh' \
-  'terminal' \
   'tmux' \
-  'utility' \
 #
 # Autosuggestions
 #
