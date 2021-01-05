@@ -14,30 +14,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# # Spaceship Theme customization
-# ZSH_THEME="spaceship"
-# SPACESHIP_PROMPT_ORDER=(
-#     user
-#     host
-#     dir
-#     git
-#     docker
-#     aws
-#     venv
-#     conda
-#     exec_time
-#     line_sep
-#     jobs
-#     exit_code
-#     char
-# )
-# spaceship_prompt_opened=true
-# SPACESHIP_PROMPT_PREFIXES_SHOW=true
-# SPACESHIP_HOST_SHOW=always
-# SPACESHIP_USER_SHOW=always
-# SPACESHIP_USER_PREFIX="┌─ "
-# SPACESHIP_CHAR_SYMBOL="└─○ "
-
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
@@ -80,21 +56,15 @@ HIST_STAMPS="mm/dd/yyyy"
 # User configuration
 
 ## CLI completion
-command -v npm >/dev/null 2>&1 && source <(npm completion) # npm
-command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh) # kubernetes
-command -v oc >/dev/null 2>&1 && source <(oc completion zsh) # Openshift
-command -v rustup >/dev/null 2>&1 && \
-if [ ! -d "$HOME/.zfunc" ]; then
-   mkdir -p ~/.zfunc
-fi && \
-rm -f ~/.zfunc/_rustup ~/.zfunc/_cargo && \
-rustup completions zsh > ~/.zfunc/_rustup && \
-rustup completions zsh cargo > ~/.zfunc/_cargo
+for cmd in npm kubectl oc tkn; do
+	if command -v "$cmd" >/dev/null 2>&1; then
+		source <("$cmd" completion zsh)
+	fi
+done
 
 ## rbenv init
-eval "$(rbenv init -)"
-
-## direnv init
-command -v direnv >/dev/null 2>&1 && direnv allow
+if command -v rbenv >/dev/null 2>&1; then
+	eval "$(rbenv init -)"
+fi
 
 eval "$(starship init zsh)"
