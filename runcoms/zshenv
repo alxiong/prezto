@@ -7,4 +7,160 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-[[ -f ~/.envrc ]] && . ~/.envrc
+# Language
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Timezone Settings (for tz: https://github.com/oz/tz)
+TZ_LIST="US/Pacific;US/Eastern;Europe/Berlin;Europe/Amsterdam"
+
+# Terminal
+# export TERM=alacritty
+
+# XDG settings
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Editors
+export EDITOR='vi'
+export VISUAL='vi'
+export PAGER='less'
+export DOOMDIR="$XDG_CONFIG_HOME/doom"
+
+# NVM settings
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+
+# Golang settings
+export GOPATH="$HOME/go"
+
+# Rust settings
+# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+# export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+export CARGO_HOME="$HOME/.cargo"
+source "$HOME/.cargo/env"
+
+# JAVA settings
+if [ $(uname) = "Darwin" ]; then
+	export JAVA_HOME='/Library/Java/JavaVirtualMachines/zulu-19.jdk/Contents/Home'
+else
+	export JAVA_HOME='/usr/lib/jvm/java-1.11.0-openjdk-amd64'
+fi
+
+# Less settings
+# Set the default Less options.
+# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
+# Remove -X and -F (exit if the content fits on one screen) to enable it.
+export LESS='-F -g -i -M -R -S -w -X -z-4'
+
+# PDF tool
+if [ $(uname) = "Darwin" ]; then
+	export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.3/lib/pkgconfig"
+fi
+
+# Compilation Flags
+if [ $(uname) = "Darwin" ]; then
+	export ARCHFLAGS="-arch arm64" # Apple M1
+else
+	export ARCHFLAGS="-arch x86_64"
+fi
+
+# Starship settings
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$HOME/.starship/cache"
+
+# NixOS envs:
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# CC/CXX compiler envs:
+export CC=$(command -v clang)
+export CXX=$(command -v clang++)
+
+# Wasmtime envs:
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+if [ $(uname) = "Darwin" ]; then
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/curl/lib -L/opt/homebrew/opt/libomp/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libomp/include"
+
+  # GMP, MPFR, QD, OMP, ZLIB
+  export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/gmp/lib -L/opt/homebrew/opt/mpfr/lib -L/opt/homebrew/opt/qd/lib -L/opt/homebrew/opt/libomp/lib -L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/gsl/lib"
+  export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/gmp/include -I/opt/homebrew/opt/mpfr/include -I/opt/homebrew/opt/qd/include -I/opt/homebrew/opt/libomp/include -I/opt/homebrew/opt/zlib/include"
+  export OpenMP_omp_LIBRARY="/opt/homebrew/opt/libomp/lib/libomp.dylib"
+  export CMAKE_PREFIX_PATH="/opt/homebrew"
+fi
+
+# ===================================================
+# Setup fpath
+# fpath -- where zsh looks for customized zsh functions
+fpath+=~/.zfunc
+fpath+=/opt/homebrew/share/zsh/site-functions
+
+# ===================================================
+# Setup path
+
+## system path
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$PATH"
+PATH="$HOME/.local/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+
+## Editor
+PATH="$PATH:$XDG_CONFIG_HOME/emacs/bin"
+
+## Nix
+PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin"
+
+## Golang
+PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+
+## Rust
+## note: ~/.cargo/bin already added above via `source .cargo/env`
+
+## Python
+PATH="$PATH:$HOME/.poetry/bin"
+
+## Haskell
+PATH="$PATH:$HOME/.ghcup/bin"
+
+## Ruby
+PATH="$PATH:$HOME/.rbenv/bin"
+
+## Zig
+PATH="$PATH:$HOME/zls/zig-out/bin"
+
+## WASM
+PATH="$PATH:$WASMTIME_HOME/bin"
+
+## Others
+PATH="$PATH:$HOME/apalache/bin:/usr/local/smlnj/bin:$XDG_CONFIG_HOME/.foundry/bin:$XDG_CONFIG_HOME/.sp1/bin"
+
+## MacOS-specific PATH
+if [ $(uname) = "Darwin" ]; then
+  PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/munki"
+  PATH="$PATH:/Library/TeX/texbin" # mactex instruction: https://www.tug.org/mactex/faq/#qm04
+
+  PATH="$PATH:/opt/homebrew/opt/llvm/bin:/opt/homebrew/opt/cython/bin:/opt/homebrew/opt/curl/bin"
+fi
+
+## Linux-specific PATH
+if [ $(uname) = "Linux" ]; then
+  PATH="$PATH:/snap/bin"
+fi
+
+## Javascript, Typescript, NPM
+PATH="$PATH:`yarn global bin`"
+
+
+export PATH="$PATH" # note: zprofile should deduplicate `path`
+
+# ===================================================
+# Setup alias
+#
+alias vim=nvim
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias gitlogshort="git log --graph --abbrev-commit --decorate --format=format:'%h - %aD (%ar)%d%n''    %s - %an' --all"
+alias rosetta="arch -x86_64"
+alias today='date +"%A, %B %-d, %Y"'
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias ipaddr="ipconfig getifaddr en0"
