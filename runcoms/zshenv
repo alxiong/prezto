@@ -12,7 +12,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Timezone Settings (for tz: https://github.com/oz/tz)
-TZ_LIST="US/Pacific;US/Eastern;Europe/Berlin;Europe/Amsterdam"
+export TZ_LIST="US/Pacific;US/Eastern;Europe/Berlin;Europe/Amsterdam"
 
 # Terminal
 # export TERM=alacritty
@@ -116,10 +116,10 @@ PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 ## note: ~/.cargo/bin already added above via `source .cargo/env`
 
 ## Python
-PATH="$PATH:$HOME/.poetry/bin"
+PATH="$PATH:$HOME/.poetry/bin:$HOME/anaconda3/bin"
 
 ## Haskell
-PATH="$PATH:$HOME/.ghcup/bin"
+PATH="$PATH:$HOME/.ghcup/bin:$HOME/.cabal/bin"
 
 ## Ruby
 PATH="$PATH:$HOME/.rbenv/bin"
