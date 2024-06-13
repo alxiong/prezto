@@ -75,6 +75,10 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # CC/CXX compiler envs:
 export CC=$(command -v clang)
 export CXX=$(command -v clang++)
+if [ $(uname) = "Darwin" ]; then
+  export SDKROOT=$(xcrun --show-sdk-path)
+fi
+
 
 # Wasmtime envs:
 export WASMTIME_HOME="$HOME/.wasmtime"
