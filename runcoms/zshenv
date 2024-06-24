@@ -89,10 +89,13 @@ if [ $(uname) = "Darwin" ]; then
 
   # GMP, MPFR, QD, OMP, ZLIB
   export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/gmp/lib -L/opt/homebrew/opt/mpfr/lib -L/opt/homebrew/opt/qd/lib -L/opt/homebrew/opt/libomp/lib -L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/gsl/lib"
-  export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/gmp/include -I/opt/homebrew/opt/mpfr/include -I/opt/homebrew/opt/qd/include -I/opt/homebrew/opt/libomp/include -I/opt/homebrew/opt/zlib/include"
+  export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/gmp/include -I/opt/homebrew/opt/mpfr/include -I/opt/homebrew/opt/qd/include -I/opt/homebrew/opt/libomp/include -I/opt/homebrew/opt/libmpc/include -I/opt/homebrew/opt/zlib/include"
   export OpenMP_omp_LIBRARY="/opt/homebrew/opt/libomp/lib/libomp.dylib"
   export CMAKE_PREFIX_PATH="/opt/homebrew"
 fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
 
 # ===================================================
 # Setup fpath
@@ -153,6 +156,8 @@ fi
 ## Javascript, Typescript, NPM
 PATH="$PATH:`yarn global bin`"
 
+# Python, pyenv
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PATH="$PATH" # note: zprofile should deduplicate `path`
 
